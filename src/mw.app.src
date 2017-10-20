@@ -1,0 +1,21 @@
+{application, mw,
+ [{description, "A Nitrogen Application"},
+  {vsn, "0.1.0"},
+  {registered, []},
+  {mod, { mw_app, []}},
+  {included_applications, [cowboy
+                          , nitrogen_core
+                          , nprocreg
+                          , simple_bridge
+                          ]},
+  {applications,
+   [kernel,
+    stdlib
+   ]},
+  {env,[]},
+  {modules, []},
+
+  {contributors, []},
+  {licenses, []},
+  {links, []}
+ ]}.

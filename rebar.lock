@@ -1,0 +1,28 @@
+{"1.1.0",
+[{<<"cowboy">>,{pkg,<<"cowboy">>,<<"1.0.3">>},0},
+ {<<"cowlib">>,{pkg,<<"cowlib">>,<<"1.0.2">>},1},
+ {<<"jsx">>,{pkg,<<"jsx">>,<<"2.8.2">>},0},
+ {<<"nitrogen_core">>,
+  {git,"git://github.com/nitrogen/nitrogen_core",
+       {ref,"b9f3e020fb41005b6ecab1860ee5fbb68a396441"}},
+  0},
+ {<<"nprocreg">>,
+  {git,"git://github.com/nitrogen/nprocreg",
+       {ref,"d022d52f4faa946d4092b2bca1a3de62b494c0fd"}},
+  0},
+ {<<"ranch">>,{pkg,<<"ranch">>,<<"1.4.0">>},1},
+ {<<"simple_bridge">>,
+  {git,"git://github.com/nitrogen/simple_bridge",
+       {ref,"f64788d3bcd3554953be3c38831d9633fe7cee59"}},
+  0},
+ {<<"sync">>,
+  {git,"git://github.com/rustyio/sync",
+       {ref,"9c78e7b4fe28c75d18ad6971585a204b96e47db1"}},
+  0}]}.
+[
+{pkg_hash,[
+ {<<"cowboy">>, <<"101A5F826CE9A1EBB2EA53A2CDFFFC74736E99807E9E492ECD5F26544C04082B">>},
+ {<<"cowlib">>, <<"9D769A1D062C9C3AC753096F868CA121E2730B9A377DE23DEC0F7E08B1DF84EE">>},
+ {<<"jsx">>, <<"7ACC7D785B5ABE8A6E9ADBDE926A24E481F29956DD8B4DF49E3E4E7BCC92A018">>},
+ {<<"ranch">>, <<"10272F95DA79340FA7E8774BA7930B901713D272905D0012B06CA6D994F8826B">>}]}
+].
