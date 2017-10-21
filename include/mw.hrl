@@ -1,0 +1,1 @@
+-define(MW_EVENT, mw_event).

@@ -21,7 +21,8 @@ stop() ->
   gen_server:call(?SERVER, stop).
 
 start_link(Config) ->
-    gen_server:start_link({local, ?SERVER}, ?MODULE, Config, []).
+  mw_event:start_link(),
+  gen_server:start_link({local, ?SERVER}, ?MODULE, Config, []).
 
 %% ------------------------------------------------------------------
 %% gen_server Function Definitions
@@ -46,9 +47,6 @@ handle_cast(_Msg, State) ->
   {noreply, State}.
 
 handle_info({tcp, _Port, Data}, State) ->
-  %% Data can be non-json when init_msg
-  %% is not processed by the connector, exiting the server
-  %% Data can consists of multiple Packets joined with a Return
   lists:map(
     fun(Packet) ->
         Bin = list_to_binary(Packet),
@@ -80,4 +78,15 @@ code_change(_OldVsn, State, _Extra) ->
 
 decode_json(In) -> 
   Data = jsx:decode(In, [return_maps]),
-  io:format("~P~n", [Data, 2048]).
+  io:format("Data: ~P~n", [Data, 2048]),
+  publish(Data).
+
+publish(#{ <<"blinkStrength">> := BS }) ->
+  mw_event:blink(BS),
+  io:format("Blink! ~p~n", [BS]);
+publish(#{ <<"eSense">> := ESense, <<"poorSignalLevel">> := Signal }) ->
+  mw_event:esense(ESense, Signal),
+  io:format("eSense: ~P~n", [ESense, 2024]);
+publish(_) ->
+  ok.
+
