@@ -29,11 +29,11 @@ init([]) ->
 
 
 handle_event({blink, Strength}, State) -> 
-  io:format("Handled blink event.~n"),
+  comet_send({blink, Strength}),
   {ok, State};
 
 handle_event({esense, Data, SignalLevel}, State) -> 
-  io:format("Handled esense event.~n"),
+  comet_send({esense, Data, SignalLevel}),
   {ok, State};
 
 handle_event(_Event, State) ->
@@ -58,4 +58,9 @@ code_change(_OldVsn, State, _Extra) ->
 %%%===================================================================
 %%% Internal functions
 %%%===================================================================
+
+comet_send(Msg) -> 
+  nprocreg:get_pid({async_pool, {index, global}}) ! Msg.
+
+  
 

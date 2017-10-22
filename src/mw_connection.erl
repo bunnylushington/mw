@@ -21,7 +21,6 @@ stop() ->
   gen_server:call(?SERVER, stop).
 
 start_link(Config) ->
-  mw_event:start_link(),
   gen_server:start_link({local, ?SERVER}, ?MODULE, Config, []).
 
 %% ------------------------------------------------------------------
@@ -78,15 +77,12 @@ code_change(_OldVsn, State, _Extra) ->
 
 decode_json(In) -> 
   Data = jsx:decode(In, [return_maps]),
-  io:format("Data: ~P~n", [Data, 2048]),
   publish(Data).
 
 publish(#{ <<"blinkStrength">> := BS }) ->
-  mw_event:blink(BS),
-  io:format("Blink! ~p~n", [BS]);
+  mw_event:blink(BS);
 publish(#{ <<"eSense">> := ESense, <<"poorSignalLevel">> := Signal }) ->
-  mw_event:esense(ESense, Signal),
-  io:format("eSense: ~P~n", [ESense, 2024]);
+  mw_event:esense(ESense, Signal);
 publish(_) ->
   ok.
 

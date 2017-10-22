@@ -30,7 +30,12 @@ init([]) ->
                 , nprocreg
                 , simple_bridge
                 ]),
-  {ok, { {one_for_one, 5, 10}, []} }.
+  MWEvent = #{ id => mw_event, 
+               start => {mw_event, start_link, []} },
+  MWConnection = #{ id => mw_connection,
+                    start => {mw_connection, start_link, [ok]} },
+               
+  {ok, { {one_for_one, 5, 10}, [MWEvent, MWConnection]} }.
 
 %%====================================================================
 %% Internal functions

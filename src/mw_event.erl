@@ -11,7 +11,8 @@
 
 start_link() -> 
   {ok, PID} = gen_event:start_link(),
-  register(?MW_EVENT, PID).
+  register(?MW_EVENT, PID),
+  {ok, PID}.
 
 manager_pid() -> 
   whereis(?MW_EVENT).
